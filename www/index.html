@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PARK CUCEI</title>
+    <link rel="icon" type="image/png" href="Resources/icono.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="js/js.cookie.js"></script>
+    <link rel="stylesheet" href="onsen/css/onsenui.css">
+    <link rel="stylesheet" href="onsen/css/onsen-css-components.min.css">
+    <script src="onsen/js/onsenui.min.js"></script>
+    <link href="onsen/css/style.css" rel="stylesheet" type="text/css">
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/registro.js"></script>
+    <script src="js/vehiculo.js"></script>
+    <script src="js/canvas.js"></script>
+
+</head>
+
+<body>
+
+    <ons-splitter>
+        <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+            <ons-page>
+                <ons-list id="menu-splitter">
+                    <ons-list-item onclick="fn.load('inicio.html')" tappable>
+                        Inicio
+                    </ons-list-item>
+                    <ons-list-item onclick="fn.load('acercaDe.html')" tappable>
+                        Acerca De
+                    </ons-list-item>
+                    <ons-list-item onclick="fn.load('contacto.html')" tappable>
+                        Contacto
+                    </ons-list-item>
+                </ons-list>
+            </ons-page>
+        </ons-splitter-side>
+        <ons-splitter-content id="content" page="inicio.html"></ons-splitter-content>
+    </ons-splitter>
+
+
+    <template id="inicio.html">
+        <ons-page class="Page">
+
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+
+                    </div>
+                    <div class="titulo center">
+                        PARK CUCEI
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="fn.load('registro.html')">
+                            <i class="fas fa-user-plus"></i>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+            </div>
+
+            <!-- Carrusel -->
+            <ons-carousel style="padding-top: 40px" swipeable auto-scroll overscrollable id="carousel">
+                <ons-carousel-item>
+                    <img src="Resources/Logo Park Cucei.png" style="width:100%; height: 200px;">
+                </ons-carousel-item>
+                <ons-carousel-item>
+                    <img src="Resources/mapa-cucei.jpg" style="width:100%; height: 200px;">
+                </ons-carousel-item>
+                <ons-carousel-item>
+                    <img src="Resources/esacionamiento-cucei.jpg" style="width:100%; height:200px;">
+                </ons-carousel-item>
+            </ons-carousel>
+
+            <center>
+                <div class="login">
+                    <ons-input id="usuarioLogin" type="text" placeholder="USUARIO"></ons-input><br><br>
+                    <ons-input id="passwordLogin" type="password" placeholder="PASSWORD"></ons-input><br><br>
+                    <ons-button onclick="login()" class="button">Iniciar</ons-button>
+                </div>
+            </center>
+
+
+            <!-- Footer -->
+            
+            <footer>
+                <center>
+                    <div class="center footer">Estacionamiento CUCEI</div>
+                </center>
+            </footer>
+
+        </ons-page>
+    </template>
+
+    <!-- Registro -->
+    <template id="registro.html">
+        <ons-page>
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
+                    <div class="titulo center">
+                        Registro de Usuarios
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="fn.load('inicio.html')">
+                            <i class="fas fa-arrow-left"></i>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+            </div>
+            <center>
+                <div class="registro">
+                    <br><br>
+
+                    <h2>Registrate con los datos de SIIAU</h2>
+                    <ons-input id="codigoSiiauRegistro" placeholder="Código"></ons-input><br><br>
+                    <ons-input id="nipSiiauRegistro" placeholder="NIP" type="password"></ons-input><br><br>
+                    <ons-button class="registroSiiau" onclick="registroSiiau()">Registrarse</ons-button><br>
+                    <br><br><br>
+                </div>
+
+            </center>
+            <!-- Footer -->
+            <footer>
+                <center>
+                    <div class="center footer">Estacionamiento CUCEI</div>
+                </center>
+            </footer>
+        </ons-page>
+    </template>
+
+
+    <template id="inicioUsuario.html">
+        <ons-page>
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+
+                    </div>
+                    <div id="nombreUsuario" class="titulo center">
+                    </div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+            </div>
+
+            <center>
+                <div id="ctrlEstacionamiento" style="padding-top: 20px">
+                </div>
+                <div id="cajonesDisponibles" style="padding-top: 20px">
+                </div>
+                <div>
+                    <canvas onmousedown="ObtenerCoords(event)" height="auto" id="estacionamientoCanvas"></canvas>
+                    <h3>Número de cajones: </h3><span class="notification notification--material">137</span>
+                    <h3>Número de ocupados: </h3><span id="cajonesOc" class="notification notification--material"></span>
+                    <h3>Número de disponibles: </h3><span id="cajonesDis" class="notification notification--material"></span><br><br>
+                    <br><br><br>
+                </div>
+            </center>
+            <!-- Footer -->
+            <footer>
+                <center>
+                    <div class="center footer">Estacionamiento CUCEI</div>
+                </center>
+            </footer>
+        </ons-page>
+    </template>
+
+    <!-- Vehiculos -->
+    <template id="vehiculos.html">
+        <ons-page>
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+
+                    </div>
+                    <div class="titulo center">Vehículos</div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+            </div>
+            <br><br>
+
+            <center>
+                <ons-fab class="right" onclick="agregarVehiculo()">
+                    <ons-icon icon="fa-plus"></ons-icon>
+                </ons-fab>
+                <ons-list-title>Mis vehículos
+                    <ons-list id="listaVehiculos">
+
+                    </ons-list>
+
+                    <br><br><br>
+                    <div id="registroVehiculo">
+                            <ons-input id="nombreVehiculo" placeholder="Nombre"></ons-input><br><br>
+                            <ons-input id="placasVehiculo" placeholder="Placas"></ons-input><br><br>
+                            <ons-button onclick="enviarRegistroVehiculo()">Agregar</ons-button><br><br><br><br><br>
+                    </div>
+            </center>
+            <!-- Footer -->
+            <footer>
+                <center>
+                    <div class="center footer">Estacionamiento CUCEI</div>
+                </center>
+            </footer>
+        </ons-page>
+    </template>
+
+    <!-- Configuracion Usuario -->
+    <template id="configuracionUsuario.html">
+        <ons-page>
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+
+                    </div>
+                    <div class="titulo center">Mis Datos</div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+            </div>
+            <center>
+                <br><br>
+                <img id="imagenUsuario" src="img/default_user_photo.png" width="80%" height="auto" alt="">
+                <h2>Codigo</h3>
+                    <h3 id="codigoUsuario">
+                </h2><br>
+                <h2>Nombre</h3>
+                    <h3 id="nombreUsuario">
+                </h2><br>
+                <h2>Centro Universitario</h3>
+                    <h3 id="centroUsuario">
+                </h2><br>
+                <h2>Carrera</h3>
+                    <h3 id="carreraUsuario">
+                </h2><br>
+                <br><br><br><br>
+
+
+            </center>
+            <!-- Footer -->
+            <footer>
+                <center>
+                    <div class="center footer">Estacionamiento CUCEI</div>
+                </center>
+            </footer>
+        </ons-page>
+    </template>
+
+    <template id="acercaDe.html">
+        <ons-page>
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <ons-toolbar>
+                    <div class="left">
+                        <ons-toolbar-button onclick="fn.open()">
+                            <ons-icon icon="md-menu"></ons-icon>
+                        </ons-toolbar-button>
+
+                    </div>
+                    <div class="titulo center">Acerca de</div>
+                    <div class="right">
+                        <ons-toolbar-button onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </ons-toolbar-button>
+                    </div>
+                </ons-toolbar>
+            </div>
+            <center>
+                <div style="  margin-top: 100px;
+                margin-bottom: 100px;
+                margin-right: 80px;
+                margin-left: 80px;">
+                        Park CUCEI es una aplicación destinada a los estudiantes del Centro Universitario de Ciencias Exactas e Ingenierías. 
+                      <br>
+                        Se pretende que los alumnos con automóvil tengan un mejor control al momento de estacionar su vehículo en los estacionamientos destinados a los alumnos.
+                        <br>
+                        Se logrará ver el lugar donde el vehículo se encuentre estacionado, los lugares disponibles y los lugares ocupados. 
+
+                    <br><br><br>
+                        Desarrollado por: Fernando López Parra
+                </div>
+            </center>
+            <!-- Footer -->
+            <footer>
+                <center>
+                    <div class="center footer">Estacionamiento CUCEI</div>
+                </center>
+            </footer>
+        </ons-page>
+    </template>
+
+    <template id="contacto.html">
+            <ons-page>
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <ons-toolbar>
+                        <div class="left">
+                            <ons-toolbar-button onclick="fn.open()">
+                                <ons-icon icon="md-menu"></ons-icon>
+                            </ons-toolbar-button>
+    
+                        </div>
+                        <div class="titulo center">Acerca de</div>
+                        <div class="right">
+                            <ons-toolbar-button onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </ons-toolbar-button>
+                        </div>
+                    </ons-toolbar>
+                </div>
+                <center>
+                    <div style="  margin-top: 100px;
+                    margin-bottom: 100px;
+                    margin-right: 80px;
+                    margin-left: 80px;">
+                    correo: fernando.lparra@alumnos.udg.mx <br>
+                    teléfono: 3312782959 <br>
+                    dirccion: Av. Revolución 1500, Guadalajara, Jalisco
+                                    </div>
+                </center>
+                <!-- Footer -->
+                <footer>
+                    <center>
+                        <div class="center footer">Estacionamiento CUCEI</div>
+                    </center>
+                </footer>
+            </ons-page>
+        </template>
+
+
+</body>
+
+</html>
